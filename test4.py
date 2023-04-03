@@ -5,7 +5,7 @@ from flask_pymongo import pymongo
 from PIL import Image
 import io
 
-CONNECTION_STRING = "mongodb+srv://juhi:juhi@mpr.ioawzd0.mongodb.net/?retryWrites=true&w=majority"
+CONNECTION_STRING = " "
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('my_database')
 
