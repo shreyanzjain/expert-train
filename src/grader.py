@@ -1,9 +1,9 @@
 from sentence_transformers import SentenceTransformer, util
-import ocr
+import src.ocr
 
 def grade():
-  image_arr = ocr.image_get()
-  generated_text = ocr.image_load_converter(image_arr)
+  image_arr = src.ocr.image_get()
+  generated_text = src.ocr.image_load_converter(image_arr)
   print(generated_text)
 
   model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')

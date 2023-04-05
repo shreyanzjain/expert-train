@@ -3,23 +3,26 @@ from flask import Flask, request, render_template
 
 from flask_pymongo import pymongo
 import src.line_segmentation
+import src.grader
 
-CONNECTION_STRING = ""
-client = pymongo.MongoClient(CONNECTION_STRING)
-db = client.get_database('my_database')
+# CONNECTION_STRING = ""
+# client = pymongo.MongoClient(CONNECTION_STRING)
+# db = client.get_database('my_database')
 
 # Flask constructor
 app = Flask(__name__)
 
 def test(myname):
     print('request')
-    db.mpr_database.insert_one(myname)
+    # db.mpr_database.insert_one(myname)
     return "Success"
 
 def imageSegment(img):
     #retrieve image from mongo
     src.line_segmentation.image_read_and_resize(img)
-    return render_template("result.html")
+    score = src.grader.grade()
+    marks = src.grader.calc_marks(score)
+    return render_template("result.html", marks=marks)
 
 # A decorator used to tell the application
 # which URL is associated function
@@ -33,10 +36,10 @@ def flask_mongodb_atlas():
         # image_bytes = io.BytesIO()
         # ans1.save(image_bytes, format='JPEG')
 
-        test({"first_name":first_name,
-              "last_name":last_name,
-              "roll_num":roll_num,
-              "Image":ans1})
+        # test({"first_name":first_name,
+        #       "last_name":last_name,
+        #       "roll_num":roll_num,
+        #       "Image":ans1})
 
         return imageSegment(ans1)
     return render_template("form.html")
