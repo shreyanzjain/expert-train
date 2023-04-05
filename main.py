@@ -2,10 +2,9 @@
 from flask import Flask, request, render_template
 
 from flask_pymongo import pymongo
-from PIL import Image
-import io
+import src.line_segmentation
 
-CONNECTION_STRING = " "
+CONNECTION_STRING = ""
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('my_database')
 
@@ -17,6 +16,11 @@ def test(myname):
     db.mpr_database.insert_one(myname)
     return "Success"
 
+def imageSegment(img):
+    #retrieve image from mongo
+    src.line_segmentation.image_read_and_resize(img)
+    return render_template("result.html")
+
 # A decorator used to tell the application
 # which URL is associated function
 @app.route('/', methods =["GET", "POST"])
@@ -25,20 +29,17 @@ def flask_mongodb_atlas():
         first_name = request.form.get("first-name")
         last_name = request.form.get("last-name")
         roll_num = request.form.get("roll-number")
-        ans1 = Image.open(request.form.get("file-upload"))
-        image_bytes = io.BytesIO()
-        ans1.save(image_bytes, format='PNG')
+        ans1 = request.form.get("file-upload")
+        # image_bytes = io.BytesIO()
+        # ans1.save(image_bytes, format='JPEG')
 
-
-        
         test({"first_name":first_name,
               "last_name":last_name,
               "roll_num":roll_num,
-              "Image":image_bytes.getvalue()})
+              "Image":ans1})
 
-        return "Success"
+        return imageSegment(ans1)
     return render_template("form.html")
-
 
 
 if __name__=='__main__':
