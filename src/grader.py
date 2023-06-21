@@ -10,7 +10,7 @@ def grade():
   model.max_seq_length = 256
 
   #generated_text = 'Oli- Data warehouse was the turn givenAnd by Bill Inman in 1950,# A subject oriented, Integrated, timeGovernment and Non-vocative Collection.'
-  ans = 'A data warehouse is subject oriented, time Variant, non - volatile, and integrated. Coined by Bill Inman.'
+  ans = 'OLAP stands for Online Analytical Processing Server. It is a software technology that allows users to analyze information from multiple database systems at the same time. It is based on multidimensional data model and allows the user to query on multi-dimensional data (eg. Delhi -> 2018 -> Sales data). OLAP databases are divided into one or more cubes and these cubes are known as Hyper-cubes.'
   sentences = [generated_text, ans]
 
   embeddings = model.encode(sentences, normalize_embeddings=True)
@@ -35,6 +35,6 @@ def calc_marks(score):
     marks += 5
   return marks
 
-score = grade()
-marks_of_student_in_ans1 = calc_marks(score)
-print(f"Marks: {marks_of_student_in_ans1}/5")
+# score = grade()
+# marks_of_student_in_ans1 = calc_marks(score)
+# print(f"Marks: {marks_of_student_in_ans1}/5")

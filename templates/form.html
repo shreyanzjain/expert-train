@@ -7,11 +7,12 @@
     <!-- <link rel="stylesheet" href="../../css/form.css"> -->
     <!-- <link rel="stylesheet" href="form.css" type="text/css"> -->
     <title>Answer Sheet Assesment</title>
+    
 </head>
 <body>
-    <h1 class="head">Submit Your Answers Here!</h1>
-    <form action="{{ url_for('flask_mongodb_atlas') }}" method="POST" >
-
+    <h1 class="head">Upload Your Answer Here!</h1>
+    <form action="{{ url_for('flask_mongodb_atlas') }}" method="POST" class="box" >
+        <p>
         <label for="first-name">First Name:</label>
         <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
     
@@ -21,73 +22,106 @@
         <label for="roll-number">Roll Number:</label>
         <input type="text" id="roll-number" name="roll-number" placeholder = "Roll Number (eg:15)"required>
     
-        <label for="file-upload">Upload File:</label>
+        <label for="file-upload">Upload Answer 1:</label>
         <input type="file" id="file-upload" name="file-upload">
 
         <h5><b>(NOTE : ALL FILES MUST BE UPLODED IN IMAGE FORMAT)<b></h5>
     
-        <button type="submit">Submit</button>
+        <button type="submit" class="button">Submit</button>
+        </p>
     </form>
 </body>
 </html>
 <style>
 
+/* Color scheme */
+:root {
+  --primary-color: rgb(8, 138, 8); /* blue */
+  --secondary-color: rgb(103, 102, 102); /* gray */
+  --background-color: lightslategray; /* light gray */
+  --font-color: #212529; /* dark gray */
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background: linear-gradient(109.6deg, rgb(204, 228, 247) 11.2%, rgb(237, 246, 250) 100.2%);
-    font-family: Times New Roman, serif;
-    padding: 80px;
-  }
+  padding-top: 100px;
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: var(--font-color);
+}
 
-  .head{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 50px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-    padding: 20px;
-    width: 50%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-  }
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
 
-  
-  
-  input[type="text"],
-  input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  button[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #3e8e41;
-  }
-  
+/* Form styles */
+.box {
 
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.box label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.box input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.box input[type="file"] {
+  border: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.box h5 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.box button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.box button[type="submit"]:hover {
+  background-color: #0069d9; /* darker blue */
+}
+
+.box p {
+  margin-bottom: 0.5rem;
+}
 </style>

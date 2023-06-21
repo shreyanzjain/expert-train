@@ -28,5 +28,5 @@ def image_load_converter(image_arr):
         pixel_values = processor(images=img, return_tensors="pt").pixel_values
         generated_ids = model.generate(pixel_values, max_new_tokens=100)
         generated_text_i = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
-        generated_text += generated_text_i
+        generated_text = generated_text + " " + generated_text_i
     return generated_text
